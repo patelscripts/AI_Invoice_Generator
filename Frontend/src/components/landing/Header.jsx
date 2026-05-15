@@ -1,16 +1,19 @@
 import { FileText, Menu, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProfileDropdown from "../layouts/ProfileDropdown";
+import Button from "../ui/Button";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   const user = { name: "Navneet", email: "navneetpatel@gmail.com" };
 
   const logout = () => {};
+
+  const navigate = useNavigate()
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -102,24 +105,35 @@ const Header = () => {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="">
-          <div className="">
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
              href="#features"
-             className=""
+             className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium transition-colors duration-200"
              >Features</a>
             <a 
             href="#testimonials"
-            className=""
+            className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium transition-colors duration-200"
             >Testimonials</a>
             <a
              href="#faq"
-             className="">FAQ</a>
-             <div className=""></div>
+             className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium transition-colors duration-200"
+             >FAQ</a>
+             <div className="border-t border-gray-200 my-2"></div>
              {isAuthenticated ? (
-              <div className="">
-                <button onClick={()=>navia}></button>
+              <div className="p-4">
+                <Button onClick={()=>navigate('/dashboard')}
+                  className="w-full"> Go to Dashboard</Button>
               </div>
+             ):(
+              <>
+              <Link to="/login" className="block px-4 py-3 text-gray-600 hover:text-gray-900 hover:bg-gray-50 font-medium transition-colors duration-200">
+                Login
+              </Link>
+              <Link to="/signup" className="block w-full text-left bg-gray-900 hover:bg-gray-800 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200">
+                Sign Up
+              </Link>
+              </>
              )}
           </div>
         </div>
