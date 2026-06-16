@@ -4,6 +4,7 @@ import Hero from '../../components/landing/Hero'
 import Features from '../../components/landing/Features'
 import TestiMonials from '../../components/landing/TestiMonials'
 import Faqs from '../../components/landing/Faqs'
+import Footer from '../../components/landing/Footer'
 
 const LandingPage = () => {
   return (
@@ -14,6 +15,7 @@ const LandingPage = () => {
           <Features/>
           <TestiMonials/>
           <Faqs/>
+          <Footer/>
         </main>
     </div>
   )
