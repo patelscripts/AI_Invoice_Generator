@@ -1,7 +1,8 @@
 import React from "react";
-import { FileText, Twitter, Github, Linkedin } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import { FaGithub , FaLinkedin} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FiFileText } from "react-icons/fi";
 const FooterLink = ({ href, to, children }) => {
   const className =
     "block text-gray-400 hover:text-white transition-colors duration-200";
@@ -40,7 +41,7 @@ const Footer = () => {
           <div className="space-y-4 md:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-6">
               <div className="w-8 h-8 bg-blue-950 rounded-md flex items-center justify-center">
-                <FileText className="w-4 h-4 text-white" />
+                <FiFileText className="w-4 h-4 text-white" />
               </div>
               <span className="text-xl font-bold">AI Invoice App</span>
             </Link>
@@ -88,13 +89,13 @@ const Footer = () => {
                 </p>
                 <div className="flex space-x-4">
                     <SocialLinks href="#">
-                        <Twitter className="w-5 h-5"/>
+                        <FaXTwitter className="w-5 h-5"/>
                     </SocialLinks>
                     <SocialLinks href="#">
-                        <Github className="w-5 h-5"/>
+                        <FaGithub className="w-5 h-5"/>
                     </SocialLinks>
                     <SocialLinks href="#">
-                        <Linkedin className="w-5 h-5"/>
+                        <FaLinkedin className="w-5 h-5"/>
                     </SocialLinks>
                 </div>
             </div>
