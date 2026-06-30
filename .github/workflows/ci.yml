@@ -2,7 +2,7 @@ name: AI Invoice Generator CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
@@ -12,12 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 🔹 FRONTEND SETUP
+      # 🔹 Setup Node (LTS recommended)
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "22"
+          node-version: "20"
 
+      # 🔹 FRONTEND
       - name: Install Frontend Dependencies
         run: |
           cd Frontend
@@ -28,7 +29,7 @@ jobs:
           cd Frontend
           npm run build
 
-      # 🔹 BACKEND SETUP
+      # 🔹 BACKEND
       - name: Install Backend Dependencies
         run: |
           cd Backend
