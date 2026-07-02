@@ -7,7 +7,7 @@ const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: "7d"
     })
-};
+}
 
 //@desc Register new User
 //@route POST/api/auth/register
