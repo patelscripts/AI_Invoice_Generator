@@ -21,11 +21,17 @@ const invoiceSchema = new mongoose.Schema({
     dueDate:{
         type : Date
     },
-    billForm : {
+    billFrom : {
         businessName : String,
         email : String,
         address : String,
         phone : String,
+    },
+    billTo: {   
+        businessName: String,
+        email: String,
+        address: String,
+        phone: String,
     },
     items : [itemSchema],
     notes : {
@@ -33,15 +39,15 @@ const invoiceSchema = new mongoose.Schema({
     },
     paymentTerms : {
         type : String,
-        deafult : "Net 15",
+        default : "Net 15",
     },
     status:{
         type : String,
         enum : ["Paid", "UnPaid"],
-        deafult : "UnPaid"
+        default : "UnPaid"
     },
     subtotal : Number,
-    taxtotal : Number,
+    taxTotal : Number,
     total : Number
 },
 {timestamps:true}

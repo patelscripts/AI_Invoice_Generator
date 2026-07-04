@@ -14,7 +14,6 @@ const generateToken = (id) => {
 //@access Public
 
 exports.registerUser = async (req, res) => {
-    console.log("Api hit")
     const { name, email, password } = req.body;
     try {
         if(!name || !email || !password){
