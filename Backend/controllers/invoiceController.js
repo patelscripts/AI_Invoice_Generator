@@ -65,6 +65,9 @@ exports.getInvoices = async(req, res) =>{
 //@access Private
 exports.getInvoiceById = async(req, res) =>{
     try{
+        const invoice = await Invoice.findById(req.params.id).populate("user", "name email")
+        if(!invoice) return res.status(404).json({message : "invoices not found"});
+        res.json(invoice);
     }catch(error){
         res.status(500).json({message : "Error creating invoices", error: error.message})
     }
@@ -75,6 +78,48 @@ exports.getInvoiceById = async(req, res) =>{
 //@access Private
 exports.updateInvoice = async(req, res) =>{
     try{
+        const{
+            invoiceNumber,
+            invoiceDate,
+            dueDate,
+            billFrom,
+            billTo,
+            items,
+            notes,
+            paymentTerms,
+            status
+        } = req.body;
+        
+        // Recalculate totals if items changed
+         let subtotal = 0;
+        let taxTotal = 0;
+        items.forEach((item) =>{
+            subtotal += item.unitPrice * item.quantity;
+            taxTotal += ((item.unitPrice * item.quantity) * (item.taxPercent || 0))/ 100;
+        });
+
+        const total = subtotal + taxTotal;
+
+        const updatedInvoice = await Invoice.findByIdAndUpdate(
+            req.params.id,
+            {
+                invoiceNumber,
+            invoiceDate,
+            dueDate,
+            billFrom,
+            billTo,
+            items,
+            notes,
+            paymentTerms,
+            status,
+            subtotal,
+            taxTotal, 
+            total
+            },
+            {new:true}
+        );
+        if(!updatedInvoice) return res.status(404).json({message: "Invoice not found"});
+        res.json(updatedInvoice)
     }catch(error){
         res.status(500).json({message : "Error creating invoices", error: error.message})
     }
@@ -85,6 +130,9 @@ exports.updateInvoice = async(req, res) =>{
 //@access Private
 exports.deleteInvoice = async(req, res) =>{
     try{
+        const invoice = await Invoice.findByIdAndDelete(req.params.id);
+        if(!invoice) return res.status(404).json({message : "Invoice not found"});
+        res.json({message : "Invoice deleted successfully"});
     }catch(error){
         res.status(500).json({message : "Error creating invoices", error: error.message})
     }
