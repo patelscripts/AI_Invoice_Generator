@@ -95,9 +95,9 @@ const Login = () => {
         if(token){
           setSuccess("Login successful! Redirecting...");
           login(response.data, token);
-
-          navigate("/dashboard");
-
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1000);
       }
     }else{
       setError(response.data.message || "Invalid credentials.");
