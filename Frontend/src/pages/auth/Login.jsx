@@ -3,7 +3,9 @@ import { UseAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { ArrowRight, Eye, EyeOff, FileText, Loader2, Lock, Mail } from 'lucide-react';
-import { validate } from '../../../../Backend/models/invoice';
+import { validateEmail, validatePassword } from '../../utils/helper';
+import { API_PATHS } from '../../utils/ApiPath';
+import axiosInstance from '../../utils/axiosInstance';
 
 const Login = () => {
   const {login} = UseAuth();
@@ -46,11 +48,70 @@ const Login = () => {
     }
   };
 
-  const handleBlur = (e) =>{};
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched((prev) => ({
+      ...prev,
+      [name]: true,
+    }));
 
-  const isFormValid = () =>{};
+    // Validate on blur
+    const newFieldErrors = { ...fieldErrors };
+    if (name === "email") {
+      newFieldErrors.email = validateEmail(formData.email);
+    } else if (name === "password") {
+      newFieldErrors.password = validatePassword(formData.password);
+    }
+    setFieldErrors(newFieldErrors);
+  };
 
-  const handleSubmit = async() =>{};
+  const isFormValid = () => {
+      const emailError = validateEmail(formData.email);
+      const passwordError = validatePassword(formData.password);
+      return !emailError && !passwordError && formData.email && formData.password;
+  };
+
+  const handleSubmit = async() => {
+    // Validate all fields before submit
+    const emailError = validateEmail(formData.email);
+    const passwordError = validatePassword(formData.password);
+
+    if (emailError || passwordError) {
+      setFieldErrors({
+        email: emailError,
+        password: passwordError,
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    setError("");
+    setSuccess("");
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, formData);
+
+      if (response.status === 200) {
+        const {token} = response.data;
+        if(token){
+          setSuccess("Login successful! Redirecting...");
+          login(response.data, token);
+
+          navigate("/dashboard");
+
+      }
+    }else{
+      setError(response.data.message || "Invalid credentials.");
+    }
+    } catch (err) {
+      if(err.response && err.response.data && err.response.data.message){
+        setError(err.response.data.message);
+      }else{
+        setError("An error occurred. Please try again.");
+      } 
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <div className='min-h-screen bg-white flex items-center justify-center px-4'>
       <div className='w-full max-w-sm'>
@@ -67,7 +128,7 @@ const Login = () => {
         <div className='space-y-4'>
           {/* email */}
           <div>
-            <Label className="block text-sm font-medium text-gray-700 mb-2">Email</Label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
             <div className='relative'>
               <Mail className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5'/>
               <input 
@@ -167,7 +228,7 @@ const Login = () => {
           <p className='text-sm text-gray-600'>
             Don't have an Account?{" "}
             <button
-            className='text-black font-medium hover:underline'
+            className='text-black font-medium hover:underline cursor-pointer'
             onClick={()=> navigate("/signup")}>SignUp</button>
           </p>
         </div>
