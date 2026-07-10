@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { BriefcaseBusiness, LogOut, Menu, X } from 'lucide-react';
 import { NAVIGATION_MENU } from '../../utils/data';
+import ProfileDropdown from './ProfileDropdown';
 
 const NavigationItem = ({item, isActive, onClick, isCollapsed}) => {
   const Icon = item.icon;
@@ -145,9 +146,9 @@ const DashboardLayout = ({children, activeMenu}) => {
               onClick={toggleSidebar}
               className='p-2 rounded-xl hover:bg-gray-100 transition-colors duration-200'>
                 {sidebarOpen ? (
-                  <X className="j-5 w-5 text-gray-600"/>
+                  <X className="h-5 w-5 text-gray-600"/>
                 ):(
-                  <Menu className="j-5 w-5 text-gray-600"/>
+                  <Menu className="h-5 w-5 text-gray-600"/>
                 )}
               </button>
             )}
@@ -163,7 +164,17 @@ const DashboardLayout = ({children, activeMenu}) => {
 
           <div className='flex items-center space-x-3'>
             {/* Profile dropdown */}
-
+            <ProfileDropdown
+            isOpen={profileDropdownOpen}
+            onToggle={(e)=>{
+              e.stopPropagation();
+              setProfileDropdownOpen(!profileDropdownOpen);
+            }}
+            avatar={user?.avatar || ""}
+            companyName={user?.name||""}
+            email={user?.email||""}
+            onLogout={logout}
+            />
           </div>
         </header>
         {/* main containt area */}
