@@ -12,7 +12,7 @@ const TestiMonials = () => {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
           {TESTIMONIALS.map((testimonial, index) => (
             <div key={index} className='bg-gray-50 rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 relative'>
-              <div className='absolute -top-4 left-8 w-8 h-8 bg-linear-to-br from-blue-950 to-blue-900 rounded-full flex items-center justify-center text-white'>
+              <div className='absolute -top-4 left-8 w-8 h-8 bg-gradient-to-br from-blue-950 to-blue-900 rounded-full flex items-center justify-center text-white'>
                 <Quote className='w-5 h-5 '/>
               </div>
               <p className='text-gray-700 mb-6 leading-relaxed italic text-lg'>"{testimonial.quote}"</p>
