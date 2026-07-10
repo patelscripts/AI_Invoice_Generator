@@ -1,4 +1,4 @@
-import { BarChart2, FileText, Mail, Sparkles } from "lucide-react";
+import { BarChart2, FileText, FileTextIcon, LayoutDashboard, Mail, Plus, Sparkles,Users } from "lucide-react";
 
 
 export const FEATURES = [
@@ -77,3 +77,10 @@ export const FAQS = [
       "Plans are billed per workspace, not per user. You can upgrade or cancel anytime."
   }
 ];
+
+export const NAVIGATION_MENU = [
+  {id : 'dashboard', name:"Dashboard", icon:LayoutDashboard},
+  {id : 'invoices', name:"Invoices", icon:FileTextIcon},
+  {id : 'invoices/new', name:"Create Invoice", icon:Plus},
+  {id : 'profile', name:"Profile", icon:Users},
+]

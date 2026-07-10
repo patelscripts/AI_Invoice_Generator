@@ -21,7 +21,7 @@ const ProfileDropdown = ({
             alt="avatar"
             className="h-9 w-9 object-cover rounded-xl" />
         ) :(
-            <div className="h-8 w-8 bg-gradient-to-br from-blue-900 to-blue-800 rounded-xl flex items-center justify-center">
+            <div className="h-8 w-8 bg-linear-to-br from-blue-900 to-blue-800 rounded-xl flex items-center justify-center">
                 <span className="text-white text-sm font-semibold">
                     {companyName.charAt(0).toUpperCase()}
                 </span>
