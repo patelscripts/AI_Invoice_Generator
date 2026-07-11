@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
   const checkAuthStatus = async () => {
     try {
       const token = localStorage.getItem('token')
-      const userStr = localStorage.getItem('token')
+      const userStr = localStorage.getItem('user')
 
       if (token && userStr) {
         const userData = JSON.parse(userStr);

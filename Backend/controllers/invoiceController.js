@@ -1,3 +1,4 @@
+const invoice = require("../models/invoice");
 const Invoice = require("../models/invoice")
 
 //@desc Create new invoice
@@ -53,8 +54,12 @@ exports.createInvoice = async (req , res) =>{
 //@access Private
 exports.getInvoices = async(req, res) =>{
     try{
-        const invoices = await Invoice.find().populate("user","name email");
+        const invoices = await Invoice.find({user: req.user.id}).populate("user","name email");
         res.json(invoices);
+
+        if(invoice.user.toString() !== req.user.id){
+            return res.status(401).json({message : "Not authorized"})
+        }
     }catch(error){
         res.status(500).json({message : "Error Fetching invoices", error: error.message})
     }
