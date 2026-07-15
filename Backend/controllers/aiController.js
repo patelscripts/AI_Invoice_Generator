@@ -112,7 +112,7 @@ const getDashBoardSummary = async (req, res) => {
         - Total unpaid/pending invoices : ${unpaidInvoices.length}
         - Total revenue from paid invoices : ${totalRevenue.toFixed(2)}
         - Total outstanding amount from unpaid/pending invoices : ${totalOutstanding.toFixed(2)}
-        - Recent invoices (last 5) : ${invoices.slice(0, 5).map(inv => `Invoice #${inv.invoiceNumber} for ${inv.total.toFixed(2)}with status ${inv.status}.join(', ')`)}
+        - Recent invoices (last 5) : ${invoices.slice(0, 5).map(inv => `Invoice #${inv.invoiceNumber} for ${inv.total.toFixed(2)}with status ${inv.status}`).join(', ')}
         `
         const prompt = `
         You are a friend and insightful financial analyst for a small business owner.
