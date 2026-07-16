@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   const [recentInvoices, setRecentInvoices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() =>{
     const fetchDashboardData  = async () =>{
@@ -127,7 +127,7 @@ const Dashboard = () => {
           <h3 className='text-lg font-semibold text-slate-900'>
             Recent Invoices
           </h3>
-          <button variant="ghost" onClick={()=>naviagte("/invoices")}>
+          <button variant="ghost" onClick={()=>navigate("/invoices")}>
             View All
           </button>
         </div>
@@ -155,7 +155,7 @@ const Dashboard = () => {
                    return (<tr
                   key={invoice._id}
                   className='hover:bg-slate-50 cursor-pointer'
-                  onClick={() => naviagte(`/invoices/${invoice.id}`)}>
+                  onClick={() => navigate(`/invoices/${invoice._id}`)}>
                     <td className='px-6 py-4 whitespace-nowrap'>
                       <div className='text-sm font-medium text-slate-900'>
                         {invoice.billTo.clientName}
@@ -170,7 +170,7 @@ const Dashboard = () => {
                     <td className='px-6 py-4 whitespace-nowrap'>
                       <span
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        invoice.status === "Paid"
+                        invoice.status === "paid"
                         ?"bg-emerald-100 text-emerald-800"
                         : invoice.status === "Pending"
                         ? "bg-amber-100 text-amber-800"
@@ -199,7 +199,7 @@ const Dashboard = () => {
             <p className='text-slate-500 mb-6 max-w-md'>
               You haven't created any invoices yet. Get started by creating your first one.
             </p>
-            <button onClick={()=>naviagte('/invoices/new')} icon={Plus}>
+            <button onClick={()=>navigate('/invoices/new')} icon={Plus}>
               Create Invoice
             </button>
           </div>
