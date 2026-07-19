@@ -175,7 +175,7 @@ const Dashboard = () => {
                         : invoice.status === "Pending"
                         ? "bg-amber-100 text-amber-800"
                         : "bg-red-100 text-red-800"
-                      }`}>
+                      }`} >
                       {invoice.status}  
                       </span>
                     </td>
