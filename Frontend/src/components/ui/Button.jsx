@@ -23,7 +23,7 @@ const Button = ({
         }
   return (
     <button
-    className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`}
+    className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} cursor-pointer`}
     disabled = {isLoading}
     {...props}
     >

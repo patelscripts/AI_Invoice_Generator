@@ -1,4 +1,4 @@
-function SelectField({label, name, options, ...props}){
+function SelectField({id, label, name, options, ...props}){
     return(
         <div>
             <label htmlFor={name} className="block text-sm font-medium text-slate-700 mb-2">{label}</label>
