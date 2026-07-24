@@ -14,6 +14,11 @@ const invoiceSchema = new mongoose.Schema({
         ref:"user",
         required: true
     },
+    invoiceNumber: {              // add karo
+        type: String,
+        required: true,
+        unique: true
+    },
     invoiceDate:{
         type : Date,
         default : Date.now,
@@ -28,7 +33,7 @@ const invoiceSchema = new mongoose.Schema({
         phone : String,
     },
     billTo: {   
-        businessName: String,
+        clientName : String,
         email: String,
         address: String,
         phone: String,

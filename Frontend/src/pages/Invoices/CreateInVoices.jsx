@@ -166,7 +166,7 @@ const CreateInVoices = ({existingInvoice, onSave}) => {
     <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
       <div className='bg-white p-6 rounded-lg shadow-sm shadow-gray-100 border border-slate-200 space-y-4'>
         <h3 className='text-lg font-semibold text-slate-900 mb-2'>Bill From</h3>
-        <InputField label="Business Name"  name="invoiceDate" value={formData.billFrom.businessName} onChange={(e)=> handleInputChange(e,"billFrom")}/>
+        <InputField label="Business Name"  name="businessName" value={formData.billFrom.businessName} onChange={(e)=> handleInputChange(e,"billFrom")}/>
         <InputField label="Email" type="email" name="email" value={formData.billFrom.email} onChange={(e)=> handleInputChange(e,"billFrom")}/>
         <TextareaField label="Address" name="address" value={formData.billFrom.address} onChange={(e)=> handleInputChange(e,"billFrom")}/>
         <InputField label="Phone" name="phone" value={formData.billFrom.phone} onChange={(e)=> handleInputChange(e,"billFrom")}/>
@@ -204,7 +204,7 @@ const CreateInVoices = ({existingInvoice, onSave}) => {
                   <input type="text" name='name' value={item.name} onChange={(e) => handleInputChange(e, null, index)} className='w-full h-10 px-3 border border-slate-200 rounded-lg bg-white text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent' placeholder='Item name' />
                 </td>
                 <td className='px-2 sm:px-6 py-4'>
-                  <input type="number" name="qunatity" value={item.quantity} onChange={(e) => handleInputChange(e, null, index)} className='w-full h-10 px-3 border border-slate-200 rounded-lg bg-white text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent' placeholder='1'/>
+                  <input type="number" name="quantity" value={item.quantity} onChange={(e) => handleInputChange(e, null, index)} className='w-full h-10 px-3 border border-slate-200 rounded-lg bg-white text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent' placeholder='1'/>
                 </td>
                 <td className='px-2 sm:px-6 py-4'>
                   <input type="number" name="unitPrice" value={item.unitPrice} onChange={(e) => handleInputChange(e, null, index)} className='w-full h-10 px-3 border border-slate-200 rounded-lg bg-white text-slate-900 placeholder-slate-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent' placeholder='0.00'/>
