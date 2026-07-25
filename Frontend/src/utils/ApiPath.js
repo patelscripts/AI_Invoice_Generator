@@ -5,7 +5,7 @@ export const API_PATHS = {
         REGISTER : "/api/auth/register", //signup
         LOGIN: "/api/auth/login", //authenticate user & return JWT token
         GET_PROFILE:"/api/auth/me" ,// Get logged in user details
-        UPDATE_PROFILE:"api/auth/me" //update profile details (put)
+        UPDATE_PROFILE:"/api/auth/me" //update profile details (put)
     },
     INVOICE:{
         CREATE: "/api/invoices",
