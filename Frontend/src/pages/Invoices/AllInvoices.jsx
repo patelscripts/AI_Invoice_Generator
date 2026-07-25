@@ -101,7 +101,7 @@ const AllInvoices = () => {
   return (
     <div className=''>
       <CreateWithAIModal isOpen={isAiModalOpen} onClose={() => setIsAiModalOpen(false)} />
-      <ReminderModal isOpen={isReminderModalOpen} onClose={() => setIsReminderModalOpen(false)} />
+      <ReminderModal isOpen={isReminderModalOpen} onClose={() => setIsReminderModalOpen(false)} invoiceId={selectedInvoiceId}/>
       <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4'>
         <div>
           <h1 className='text-2xl font-semibold text-slate-900'>All Invoices</h1>
