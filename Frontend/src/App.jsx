@@ -24,12 +24,12 @@ const App = () => {
           <Route path="dashboard" element={<Dashboard/>}/>
           <Route path="invoices" element={<AllInvoices/>}/>
           <Route path="invoices/new" element={<CreateInVoices/>}/>
-          <Route path="invoices:id" element={<InvoiceDetail/>}/>
+          <Route path="invoices/:id" element={<InvoiceDetail/>}/>
           <Route path="profile" element={<ProfilePage/>}/>
           </Route>
 
           {/* catch all routes */}
-          <Route path="*" element={ <Navigate to="/" replace/>}/>
+          <Route path="*" element={<Navigate to="/" replace/>}/>
         </Routes>
       </Router>
 
